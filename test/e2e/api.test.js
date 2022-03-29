@@ -27,8 +27,13 @@ describe('API E2E Test Suite', () => {
 
     const data = JSON.parse(response.text)
     expect(data).toBeInstanceOf(Array)
-    expect(data.length).toEqual(0)
+    expect(data.length).toEqual(1)
   })
 
-  test.todo('DELETE /  - should save an item and return ok')
+  test('DELETE /  - should save an item and return ok', async () => {
+    const response = await superTest(Server)
+      .delete('/')
+    const expectedResponse = { ok: 1 }
+    expect(JSON.parse(response.text)).toStrictEqual(expectedResponse)
+  })
 })
